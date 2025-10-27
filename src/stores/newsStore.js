@@ -27,6 +27,17 @@ export const useNewsStore = defineStore('news', {
         votedAt: new Date().toISOString()
       };
       n.votes.unshift(v); // 新增评论靠前显示
+    }, // 这里必须有逗号
+    addNews(payload) {
+      const id = this.news.reduce((m, n) => Math.max(m, Number(n.id)), 0) + 1;
+      const reportedAt = payload.reportedAt || new Date().toISOString();
+      const topic = String(payload.topic || '').trim();
+      const short = String(payload.short || '').trim();
+      const full = String(payload.full || '').trim();
+      const reporter = String(payload.reporter || '').trim() || '匿名记者';
+      const imageUrl = String(payload.imageUrl || '').trim();
+      if (!topic || !short || !full || !reporter) return;
+      this.news.unshift({ id, topic, short, full, reporter, reportedAt, imageUrl, votes: [] });
     }
   }
 });

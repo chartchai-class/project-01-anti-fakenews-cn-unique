@@ -4,6 +4,7 @@
       <h1 style="margin:0;font-size:20px;">社交反假新闻系统</h1>
       <nav>
         <RouterLink to="/">首页</RouterLink>
+        <RouterLink to="/news/new">添加新闻</RouterLink>
       </nav>
     </div>
   </header>

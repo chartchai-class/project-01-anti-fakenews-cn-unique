@@ -7,7 +7,7 @@
         <label><input type="radio" value="fake" v-model="filter"/> 假新闻</label>
         <label><input type="radio" value="non-fake" v-model="filter"/> 不假新闻</label>
       </div>
-      <div class="row">
+      <div class="row" style="gap:8px;">
         <span class="label">每页条数：</span>
         <select v-model.number="pageSize">
           <option :value="5">5</option>
@@ -15,6 +15,7 @@
           <option :value="15">15</option>
           <option :value="20">20</option>
         </select>
+        <RouterLink class="ghost" to="/news/new">添加新闻</RouterLink>
       </div>
     </div>
   </section>
