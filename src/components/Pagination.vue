@@ -1,10 +1,10 @@
 <template>
   <div class="pagination" v-if="pages > 1">
-    <button class="ghost" :disabled="page===1" @click="$emit('update:page', 1)">首页</button>
-    <button class="ghost" :disabled="page===1" @click="$emit('update:page', page-1)">上一页</button>
-    <span class="label">第 {{ page }} / {{ pages }} 页</span>
-    <button class="ghost" :disabled="page===pages" @click="$emit('update:page', page+1)">下一页</button>
-    <button class="ghost" :disabled="page===pages" @click="$emit('update:page', pages)">末页</button>
+    <button class="ghost" :disabled="page===1" @click="$emit('update:page', 1)">First</button>
+    <button class="ghost" :disabled="page===1" @click="$emit('update:page', page-1)">Prev</button>
+    <span class="label">Page {{ page }} / {{ pages }}</span>
+    <button class="ghost" :disabled="page===pages" @click="$emit('update:page', page+1)">Next</button>
+    <button class="ghost" :disabled="page===pages" @click="$emit('update:page', pages)">Last</button>
   </div>
 </template>
 <script setup>

@@ -1,22 +1,22 @@
-# 社交反假新闻系统（Vue 3 + Vite）
+# Social Anti-Fake News System (Vue 3 + Vite)
 
-本项目用于课程作业演示：用户录入新闻、社区投票判断是否为假新闻，并对理由进行评论说明。判定以投票多数为准；评论与投票仅在前端状态管理中保存（刷新后清空新增数据），满足“简单单页应用”要求。
+This project is a course assignment demo: users can submit news, the community votes to determine whether it is fake, and explains reasons via comments. Majority votes decide “Fake/Not Fake”; comments and votes are saved only in front-end state (cleared on refresh), meeting the “simple SPA” requirement.
 
-## 功能点
-- 首页：新闻列表、筛选（全部/假/不假）、每页数量选择、分页
-- 详情页：新闻完整信息（主题、正文、状态、记者、时间、图片链接）、投票统计、评论分页
-- 投票页：独立投票页面，支持填写评论与图片链接（URL）
-- 判定规则：多数票决定“假/不假”，持平为“待判定”
-- 存储：Pinia 管理前端状态，无服务端 POST；刷新后新增评论清空
-- 模拟数据：自动生成 30 条新闻及多条评论，保证分页效果
+## Features
+- Home: news list, filter (All/Fake/Not Fake), items-per-page selection, pagination
+- Detail: full news info (topic, body, status, reporter, time, image URL), vote stats, comment pagination
+- Vote Page: standalone vote page, supports comment and image link (URL)
+- Decision Rule: majority decides “Fake/Not Fake”; tie = “Pending”
+- Storage: Pinia manages front-end state only; no server POST. Refresh clears newly added comments.
+- Mock Data: auto-generates 30 news items and multiple comments to ensure pagination
 
-## 技术栈
+## Tech Stack
 - Vue 3 + Vite
 - Vue Router
-- Pinia（前端状态管理）
-- Vercel 静态构建部署
+- Pinia (front-end state management)
+- Vercel static deployment
 
-## 本地开发
+## Local Development
 ```bash
 npm i
 ```
@@ -25,7 +25,7 @@ npm i
 npm run dev
 ```
 
-## 构建与预览
+## Build & Preview
 ```bash
 npm run build
 ```
@@ -34,31 +34,31 @@ npm run build
 npm run preview
 ```
 
-## 部署到 Vercel
-- 将仓库推送到 GitHub 后，在 Vercel 导入该仓库，框架选择 **Vite** 或使用本仓库内 `vercel.json` 默认配置。
-- 构建命令：`npm run build`，输出目录：`dist`。
-- 若使用命令行：
+## Deploy to Vercel
+- Push the repo to GitHub, then import it in Vercel. Choose **Vite** or use the default `vercel.json` in this repo.
+- Build command: `npm run build`, output directory: `dist`.
+- CLI option:
   ```bash
   vercel --prod
   ```
-  （需本地安装 `vercel` 并已登录）
+  (Requires local `vercel` installed and logged in)
 
-## 小组信息（请按要求填写）
-- 小组名：`<填写你们的小组名>`
-- 成员信息：
-  - 学号：`<学号1>`，姓名：`<姓名1>`
-  - 学号：`<学号2>`，姓名：`<姓名2>`
-  - 学号：`<学号3>`，姓名：`<姓名3>`
-- 视频链接（2-3 分钟演示）：`<粘贴你们的视频 URL>`
-- 已部署网站 URL（Vercel）：`<粘贴你们的生产环境 URL>`
+## Team Info (fill as required)
+- Team Name: `<your team>`
+- Members:
+  - Student ID: `<id1>`, Name: `<name1>`
+  - Student ID: `<id2>`, Name: `<name2>`
+  - Student ID: `<id3>`, Name: `<name3>`
+- Video link (2–3 min demo): `<paste your video URL>`
+- Live site URL (Vercel): `<paste your production URL>`
 
-> 注意：请进入课程课堂系统创建/加入你们的小组，并在最终提交前确认 README 信息完整。
+> Note: Please create/join your team in the course system and ensure this README is complete before final submission.
 
-## 目录结构
-- `src/pages/Home.vue`：首页列表、筛选与分页
-- `src/pages/NewsDetail.vue`：新闻详情、评论与投票统计、评论分页
-- `src/pages/Vote.vue`：独立投票页面
-- `src/stores/newsStore.js`：Pinia 状态与操作
-- `src/mock/news.js`：模拟数据与统计计算
-- `src/components/Pagination.vue`：通用分页组件
-- `vercel.json`：Vercel 部署配置
+## Directory Structure
+- `src/pages/Home.vue`: List, filter, pagination
+- `src/pages/NewsDetail.vue`: Details, comments & vote stats, comment pagination
+- `src/pages/Vote.vue`: Standalone vote page
+- `src/stores/newsStore.js`: Pinia state and actions
+- `src/mock/news.js`: Mock data and stats calculation
+- `src/components/Pagination.vue`: Reusable pagination component
+- `vercel.json`: Vercel deployment config

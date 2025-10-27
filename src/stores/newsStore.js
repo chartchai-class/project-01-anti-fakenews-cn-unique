@@ -15,7 +15,7 @@ export const useNewsStore = defineStore('news', {
     }
   },
   actions: {
-    addVote(newsId, { isFake, comment, imageUrl, voter = '匿名用户' }) {
+    addVote(newsId, { isFake, comment, imageUrl, voter = 'Anonymous' }) {
       const n = this.news.find(n => n.id === Number(newsId));
       if (!n) return;
       const v = {
@@ -34,7 +34,7 @@ export const useNewsStore = defineStore('news', {
       const topic = String(payload.topic || '').trim();
       const short = String(payload.short || '').trim();
       const full = String(payload.full || '').trim();
-      const reporter = String(payload.reporter || '').trim() || '匿名记者';
+      const reporter = String(payload.reporter || '').trim() || 'Anonymous Reporter';
       const imageUrl = String(payload.imageUrl || '').trim();
       if (!topic || !short || !full || !reporter) return;
       this.news.unshift({ id, topic, short, full, reporter, reportedAt, imageUrl, votes: [] });

@@ -1,45 +1,47 @@
 <template>
   <section class="card" v-if="news">
-    <h2 style="margin:0 0 12px;">对「{{ news.topic }}」投票与评论</h2>
-    <p class="meta">记者：{{ news.reporter }} ｜ 报告时间：{{ formatTime(news.reportedAt) }}</p>
-    <img class="figure" :src="news.imageUrl" alt="事件图片"/>
+    <h2 style="margin:0 0 12px;">Vote and comment on “{{ news.topic }}”</h2>
+    <p class="meta">Reporter: {{ news.reporter }} ｜ Reported at: {{ formatTime(news.reportedAt) }}</p>
+    <img class="figure" :src="news.imageUrl" alt="Event Image"/>
   </section>
 
   <section class="card" v-if="news">
-    <h3 class="section-title">投票（必选）</h3>
+    <h3 class="section-title">Vote (required)</h3>
     <div class="row">
-      <label><input type="radio" value="fake" v-model="voteChoice"> 假新闻</label>
-      <label><input type="radio" value="non-fake" v-model="voteChoice"> 不假新闻</label>
+      <label><input type="radio" value="fake" v-model="voteChoice"> Fake News</label>
+      <label><input type="radio" value="non-fake" v-model="voteChoice"> Not Fake News</label>
     </div>
 
-    <h3 class="section-title">评论（必填）</h3>
-    <textarea rows="5" v-model="comment" placeholder="请说明你的判断理由（必填）"></textarea>
+    <h3 class="section-title">Comment (required)</h3>
+    <textarea rows="5" v-model="comment" placeholder="Please explain your reasoning (required)"></textarea>
 
-    <h3 class="section-title">佐证图片（可选，支持本地上传或 URL）</h3>
+    <h3 class="section-title">Evidence Image (optional, upload or URL)</h3>
     <div class="grid">
       <div>
-        <input type="file" accept="image/*" ref="fileInputRef" @change="onFileChange" />
+        <input type="file" accept="image/*" ref="fileInputRef" @change="onFileChange" style="display:none" />
+        <button class="ghost" type="button" @click="fileInputRef?.click()">Choose Image</button>
+        <div class="meta" v-if="selectedFileName">Selected: {{ selectedFileName }}</div>
       </div>
       <div>
-        <input type="url" v-model="imageUrl" placeholder="或填写图片 URL，例如：https://..." />
+        <input type="url" v-model="imageUrl" placeholder="Or provide image URL, e.g., https://..." />
       </div>
     </div>
     <div v-if="showPreview" class="meta">
-      <a :href="imageUrl" target="_blank" rel="noopener">打开原图</a>
-      <img class="figure" :src="imageUrl" alt="预览图" />
+      <a :href="imageUrl" target="_blank" rel="noopener">Open original</a>
+      <img class="figure" :src="imageUrl" alt="Preview Image" />
     </div>
-    <button class="ghost" v-if="imageUrl" @click="clearImage">移除图片</button>
+    <button class="ghost" v-if="imageUrl" @click="clearImage">Remove image</button>
 
-    <h3 class="section-title">你的昵称（可选）</h3>
-    <input type="text" v-model="voter" placeholder="匿名用户"/>
+    <h3 class="section-title">Your nickname (optional)</h3>
+    <input type="text" v-model="voter" placeholder="Anonymous"/>
 
     <div class="row" style="margin-top:12px;">
-      <button :disabled="!canSubmit" @click="submit">提交</button>
-      <RouterLink class="ghost" :to="`/news/${id}`">返回详情</RouterLink>
+      <button :disabled="!canSubmit" @click="submit">Submit</button>
+      <RouterLink class="ghost" :to="`/news/${id}`">Back to Details</RouterLink>
     </div>
 
     <p v-if="error" style="color:var(--bad);margin-top:8px;">{{ error }}</p>
-    <p v-if="ok" style="color:var(--ok);margin-top:8px;">提交成功，已写入评论列表。</p>
+    <p v-if="ok" style="color:var(--ok);margin-top:8px;">Submitted successfully; added to comment list.</p>
   </section>
 </template>
 
@@ -67,10 +69,11 @@ const canSubmit = computed(() =>
 );
 
 const fileInputRef = ref(null);
-
+const selectedFileName = ref('');
 function onFileChange(e) {
   const file = e.target.files?.[0];
   if (!file) return;
+  selectedFileName.value = file.name;
   const reader = new FileReader();
   reader.onload = () => {
     // 将本地图片转为 data URL 存到 imageUrl，提交后可在详情页展示
@@ -78,9 +81,9 @@ function onFileChange(e) {
   };
   reader.readAsDataURL(file);
 }
-
 function clearImage() {
   imageUrl.value = '';
+  selectedFileName.value = '';
   if (fileInputRef.value) fileInputRef.value.value = '';
 }
 
@@ -96,14 +99,14 @@ function submit() {
   error.value = '';
   ok.value = false;
   if (!canSubmit.value) {
-    error.value = '请完成投票并填写评论。';
+    error.value = 'Please complete the vote and enter a comment.';
     return;
   }
   store.addVote(id, {
     isFake: voteChoice.value === 'fake',
     comment: comment.value,
     imageUrl: imageUrl.value,
-    voter: voter.value || '匿名用户'
+    voter: voter.value || 'Anonymous'
   });
   ok.value = true;
   // 可选：短暂停留后跳转回详情

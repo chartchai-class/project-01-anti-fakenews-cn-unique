@@ -1,10 +1,10 @@
 <template>
   <header class="header">
     <div class="header-inner">
-      <h1 style="margin:0;font-size:20px;">社交反假新闻系统</h1>
+      <h1 style="margin:0;font-size:20px;">Social Anti-Fake News System</h1>
       <nav>
-        <RouterLink to="/">首页</RouterLink>
-        <RouterLink to="/news/new">添加新闻</RouterLink>
+        <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/news/new">Add News</RouterLink>
       </nav>
     </div>
   </header>
