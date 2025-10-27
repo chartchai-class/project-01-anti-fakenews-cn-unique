@@ -34,7 +34,7 @@ npm run dev
 - Video link (2–3 min demo): `<paste your video URL>`
 - Live site URL (Vercel): `https://vue-final-lab.vercel.app/`
 "https://vue-final-lab-git-main-wangyuzhe0s-projects.vercel.app/"
-"https://vue-final-lab-git-main-wangyuzhe0s-projects.vercel.app/
+"https://vue-final-lab-git-main-wangyuzhe0s-projects.vercel.app/"
 
 
 
