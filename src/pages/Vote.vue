@@ -15,8 +15,20 @@
     <h3 class="section-title">评论（必填）</h3>
     <textarea rows="5" v-model="comment" placeholder="请说明你的判断理由（必填）"></textarea>
 
-    <h3 class="section-title">佐证图片链接（可选）</h3>
-    <input type="url" v-model="imageUrl" placeholder="例如：https://..."/>
+    <h3 class="section-title">佐证图片（可选，支持本地上传或 URL）</h3>
+    <div class="grid">
+      <div>
+        <input type="file" accept="image/*" ref="fileInputRef" @change="onFileChange" />
+      </div>
+      <div>
+        <input type="url" v-model="imageUrl" placeholder="或填写图片 URL，例如：https://..." />
+      </div>
+    </div>
+    <div v-if="showPreview" class="meta">
+      <a :href="imageUrl" target="_blank" rel="noopener">打开原图</a>
+      <img class="figure" :src="imageUrl" alt="预览图" />
+    </div>
+    <button class="ghost" v-if="imageUrl" @click="clearImage">移除图片</button>
 
     <h3 class="section-title">你的昵称（可选）</h3>
     <input type="text" v-model="voter" placeholder="匿名用户"/>
@@ -53,6 +65,32 @@ const canSubmit = computed(() =>
   (voteChoice.value === 'fake' || voteChoice.value === 'non-fake') &&
   comment.value.trim().length > 0
 );
+
+const fileInputRef = ref(null);
+
+function onFileChange(e) {
+  const file = e.target.files?.[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    // 将本地图片转为 data URL 存到 imageUrl，提交后可在详情页展示
+    imageUrl.value = String(reader.result || '');
+  };
+  reader.readAsDataURL(file);
+}
+
+function clearImage() {
+  imageUrl.value = '';
+  if (fileInputRef.value) fileInputRef.value.value = '';
+}
+
+const showPreview = computed(() => {
+  const url = imageUrl.value.trim();
+  return url.startsWith('http://') ||
+         url.startsWith('https://') ||
+         url.startsWith('data:') ||
+         url.startsWith('blob:');
+});
 
 function submit() {
   error.value = '';

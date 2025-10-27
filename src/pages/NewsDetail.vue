@@ -31,7 +31,9 @@
           <p class="meta">时间：{{ formatTime(v.votedAt) }}</p>
           <p>{{ v.comment }}</p>
           <div v-if="v.imageUrl">
-            <img class="figure" :src="v.imageUrl" alt="佐证图片"/>
+            <a :href="v.imageUrl" target="_blank" rel="noopener">
+              <img class="figure" :src="v.imageUrl" alt="佐证图片" />
+            </a>
           </div>
         </article>
       </div>
