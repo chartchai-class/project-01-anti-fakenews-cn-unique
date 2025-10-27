@@ -8,6 +8,7 @@
   </div>
 </template>
 <script setup>
+import { computed } from 'vue';
 const props = defineProps({
   total: { type: Number, required: true },
   page: { type: Number, required: true },
