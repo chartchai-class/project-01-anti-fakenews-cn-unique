@@ -28,7 +28,7 @@
     </div>
     <div v-if="showPreview" class="meta">
       <a :href="imageUrl" target="_blank" rel="noopener">Open original</a>
-      <img class="figure" :src="imageUrl" alt="Preview Image" />
+      <img class="figure preview" :src="imageUrl" alt="Preview Image" />
     </div>
     <button class="ghost" v-if="imageUrl" @click="clearImage">Remove image</button>
 
@@ -44,7 +44,6 @@
     <p v-if="ok" style="color:var(--ok);margin-top:8px;">Submitted successfully; added to comment list.</p>
   </section>
 </template>
-
 <script setup>
 import { ref, computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
@@ -89,10 +88,7 @@ function clearImage() {
 
 const showPreview = computed(() => {
   const url = imageUrl.value.trim();
-  return url.startsWith('http://') ||
-         url.startsWith('https://') ||
-         url.startsWith('data:') ||
-         url.startsWith('blob:');
+  return url.startsWith('/') || url.startsWith('http://') || url.startsWith('https://') || url.startsWith('data:') || url.startsWith('blob:');
 });
 
 function submit() {

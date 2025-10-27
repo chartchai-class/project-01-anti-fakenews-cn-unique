@@ -36,7 +36,7 @@
     </div>
     <div v-if="showPreview" class="meta">
       <a :href="imageUrl" target="_blank" rel="noopener">Open original</a>
-      <img class="figure" :src="imageUrl" alt="Event image preview" />
+      <img class="figure preview" :src="imageUrl" alt="Event image preview" />
     </div>
     <button class="ghost" v-if="imageUrl" @click="clearImage">Remove image</button>
 
@@ -83,7 +83,7 @@ function clearImage() {
 
 const showPreview = computed(() => {
   const u = imageUrl.value.trim();
-  return u.startsWith('http://') || u.startsWith('https://') || u.startsWith('data:') || u.startsWith('blob:');
+  return u.startsWith('/') || u.startsWith('http://') || u.startsWith('https://') || u.startsWith('data:') || u.startsWith('blob:');
 });
 
 const canSubmit = computed(() =>

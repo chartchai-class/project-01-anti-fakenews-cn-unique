@@ -14,7 +14,7 @@ export function generateMockNews(count = 30) {
     const full = 'Details: Please judge based on official notices, authoritative media reports, on-site photos or videos, and explain your reasoning in comments.';
     const reporter = pick(reporters, id);
     const reportedAt = new Date(baseDate.getTime() + id * 3600_000).toISOString();
-    const imageUrl = `https://picsum.photos/seed/news-${id}/960/540`;
+    const imageUrl = `/images/southeast.jpg`; // 使用 public/images 下的静态图片
     const votes = generateVotes(id);
     list.push({ id, topic, short, full, reporter, reportedAt, imageUrl, votes });
   }
@@ -37,7 +37,7 @@ function generateVotes(seed) {
     const voter = pick(voters, seed + i);
     const votedAt = new Date(start + i * 45000).toISOString();
     const comment = `${pick(comments, seed + i)} (#${seed}-${i})`;
-    const imageUrl = i % 6 === 0 ? `https://picsum.photos/seed/vote-${seed}-${i}/640/360` : '';
+    const imageUrl = i % 6 === 0 ? `/images/southeast.jpg` : ''; // 评论图片（可选）
     out.push({ id: `${seed}-${i}`, voter, isFake, comment, imageUrl, votedAt });
   }
   return out;

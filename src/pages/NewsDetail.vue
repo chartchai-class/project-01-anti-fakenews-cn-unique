@@ -5,7 +5,7 @@
       <span class="status" :class="statusClass(news.status)">{{ statusText(news.status) }}</span>
     </header>
     <p class="meta">Reporter: {{ news.reporter }} ｜ Reported at: {{ formatTime(news.reportedAt) }}</p>
-    <img class="figure" :src="news.imageUrl" alt="Event Image"/>
+    <img class="figure detail" :src="news.imageUrl" alt="Event Image"/>
     <p style="margin-top:12px;">{{ news.full }}</p>
     <p class="meta">
       Vote Stats:
@@ -32,7 +32,7 @@
           <p>{{ v.comment }}</p>
           <div v-if="v.imageUrl">
             <a :href="v.imageUrl" target="_blank" rel="noopener">
-              <img class="figure" :src="v.imageUrl" alt="Evidence Image" />
+              <img class="figure comment" :src="v.imageUrl" alt="Evidence Image" />
             </a>
           </div>
         </article>

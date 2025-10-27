@@ -38,7 +38,19 @@ button:disabled { opacity: 0.5; cursor: default; }
   .grid { grid-template-columns: 1fr 1fr; }
 }
 .meta { color: var(--muted); font-size: 13px; }
-.figure { width: 100%; display: block; border-radius: 8px; border: 1px solid #e2e8f0; }
+.figure {
+  /* 限制图片最大宽度并居中，避免过大 */
+  width: 100%;
+  max-width: 480px;  /* 基础图尺寸上限 */
+  height: auto;
+  display: block;
+  margin: 8px auto;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+.figure.detail { max-width: 380px; }   /* 详情页主图更小 */
+.figure.preview { max-width: 280px; }  /* 预览图更小 */
+.figure.comment { max-width: 220px; }  /* 评论里的缩略图最小 */
 .section-title { font-size: 18px; font-weight: 700; margin: 12px 0; }
 .stat { display: inline-flex; align-items: center; gap: 6px; padding: 4px 8px; border: 1px dashed #cbd5e1; border-radius: 6px; margin-right: 8px; }
 .pagination { display: flex; gap: 6px; align-items: center; }
