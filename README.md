@@ -31,7 +31,7 @@ npm run dev
   Contribution rate:30%
   - Student ID: `<20232097>`, Name: `<wangpengyue>`
   Contribution rate:30%
-- Video link (2–3 min demo): `<paste your video URL>`
+- Video link (2–3 min demo): 
 - Live site URL (Vercel): `https://vue-final-lab-git-main-wangyuzhe0s-projects.vercel.app/`
 `https://vue-final-lab.vercel.app/`
 
