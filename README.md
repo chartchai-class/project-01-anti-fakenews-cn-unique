@@ -9,7 +9,7 @@
   Contribution rate:30%
   - Student ID: `<20232097>`, Name: `<wangpengyue>`
   Contribution rate:30%
-- Video link (2–3 min demo):<video controls src="the video.mp4" title="Title"></video>
+- Video link (2–3 min demo): [Watch Demo (MP4)](the%20video.mp4)
 'In the project'
 - Live site URL (Vercel): 
   - https://vue-final-lab.vercel.app/
