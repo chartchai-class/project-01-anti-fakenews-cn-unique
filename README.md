@@ -13,7 +13,7 @@
 'In the project'
 - Live site URL (Vercel): `https://vue-final-lab-git-main-wangyuzhe0s-projects.vercel.app/`
 `https://vue-final-lab.vercel.app/`
--The ppt is:[text](<template for presentation.pptx>)   'In the project'
+- The ppt is:[text](<template for presentation.pptx>)   'In the project'
 - The address of the project in the class chartchai is:
 https://github.com/chartchai-class/project-01-anti-fakenews-cn-unique
 - The address of the project in my account is:
