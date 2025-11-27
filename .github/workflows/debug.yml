@@ -1,0 +1,39 @@
+name: Debug Server Environment
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  debug:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Run Diagnostic Commands on Server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.ALIYUN_HOST }}
+          username: ${{ secrets.ALIYUN_USERNAME }}
+          key: ${{ secrets.ALIYUN_SSH_PRIVATE_KEY }}
+          script: |
+            echo "--- Running diagnostics ---"
+            echo " "
+            echo "====== 1. WHO AM I? ======"
+            whoami
+            echo " "
+            echo "====== 2. WHERE AM I? (current directory) ======"
+            pwd
+            echo " "
+            echo "====== 3. WHAT IS THE \$PATH VARIABLE? ======"
+            echo $PATH
+            echo " "
+            echo "====== 4. LISTING /data DIRECTORY ======"
+            ls -la /data
+            echo " "
+            echo "====== 5. LISTING /data/projects DIRECTORY ======"
+            ls -la /data/projects
+            echo " "
+            echo "====== 6. FINDING 'docker-compose' EXECUTABLE ======"
+            find / -name "docker-compose" 2>/dev/null
+            echo " "
+            echo "--- Diagnostics complete ---"
