@@ -19,10 +19,14 @@ jobs:
           username: ${{ secrets.ALIYUN_USERNAME }}
           key: ${{ secrets.ALIYUN_SSH_PRIVATE_KEY }}
           script: |
+            echo "--- Navigating to project directory ---"
             cd /data/projects/project-01-anti-fakenews-cn-unique/project-01-anti-fakenews-cn-unique
 
+            echo "--- Pulling latest code ---"
             git pull
 
-            docker-compose down
+            echo "--- Stopping old containers (using absolute path for docker-compose) ---"
+            /usr/local/bin/docker-compose down
 
-            docker-compose up --build -d
+            echo "--- Building and starting new containers ---"
+            /usr/local/bin/docker-compose up --build -d
