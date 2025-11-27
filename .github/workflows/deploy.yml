@@ -30,17 +30,27 @@ jobs:
     needs: build-and-push 
     runs-on: ubuntu-latest
     steps:
+      - name: copy file via ssh password
+        uses: appleboy/scp-action@v0.1.7
+        with:
+        host: ${{secrets.ALIYUN_HOST}}
+        username: ${{ secrets.ALIYUN_USERNAME }}
+        key: ${{ secrets.ALIYUN_SSH_PRIVATE_KEY }}
+        port: 3290
+        source: "docker-compose.yml"
+        target: "/root/docker/project-01-anti-fakenews-cn-unique/frontend"
       - name: Deploy to Aliyun Server
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.ALIYUN_HOST }}
           username: ${{ secrets.ALIYUN_USERNAME }}
           key: ${{ secrets.ALIYUN_SSH_PRIVATE_KEY }}
+          port: 3290
           script: |
             docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
 
-            /usr/bin/docker-compose -f /root/compose/docker-compose-frontend.yml pull
+            /usr/bin/docker-compose -f /root/docker/project-01-anti-fakenews-cn-unique/frontend/docker-compose.yml pull
 
-            /usr/bin/docker-compose -f /root/compose/docker-compose-frontend.yml up -d
+            /usr/bin/docker-compose -f /root/docker/project-01-anti-fakenews-cn-unique/frontend/docker-compose.yml up -d
 
-            docker image prune -af
+            docker ps
