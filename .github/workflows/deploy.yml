@@ -34,7 +34,7 @@ jobs:
           key: ${{ secrets.ALIYUN_SSH_PRIVATE_KEY }}
           port: 3290
           source: "docker-compose.yml"
-          target: "/root/docker/project-01-anti-fakenews-cn-unique/frontend/docker-compose.yml"
+          target: "/root/docker/project-01-anti-fakenews-cn-unique/frontend"
       - name: Deploy to Aliyun Server
         uses: appleboy/ssh-action@master
         with:
