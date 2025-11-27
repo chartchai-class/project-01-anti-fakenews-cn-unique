@@ -21,13 +21,13 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
         with:
-          context: ./project-01-anti-fakenews-cn-unique # Directory containing the Dockerfile
+          context: .
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/project-01-anti-fakenews-cn-unique:latest
 
-  # Part 2: Connect to server, pull new image, and deploy
+
   deploy:
-    needs: build-and-push # Waits for the success of build-and-push before running
+    needs: build-and-push 
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to Aliyun Server
