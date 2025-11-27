@@ -33,12 +33,12 @@ jobs:
       - name: copy file via ssh password
         uses: appleboy/scp-action@v0.1.7
         with:
-        host: ${{secrets.ALIYUN_HOST}}
-        username: ${{ secrets.ALIYUN_USERNAME }}
-        key: ${{ secrets.ALIYUN_SSH_PRIVATE_KEY }}
-        port: 3290
-        source: "docker-compose.yml"
-        target: "/root/docker/project-01-anti-fakenews-cn-unique/frontend"
+          host: ${{secrets.ALIYUN_HOST}}
+          username: ${{ secrets.ALIYUN_USERNAME }}
+          key: ${{ secrets.ALIYUN_SSH_PRIVATE_KEY }}
+          port: 3290
+          source: "docker-compose.yml"
+          target: "/root/docker/project-01-anti-fakenews-cn-unique/frontend"
       - name: Deploy to Aliyun Server
         uses: appleboy/ssh-action@master
         with:
