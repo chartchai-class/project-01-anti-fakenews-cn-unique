@@ -45,8 +45,8 @@ jobs:
           script: |
             docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
 
-            /usr/bin/docker-compose -f /root/docker/project-01-anti-fakenews-cn-unique/frontend/docker-compose.yml pull
+            docker compose -f /root/docker/project-01-anti-fakenews-cn-unique/frontend/docker-compose.yml pull
 
-            /usr/bin/docker-compose -f /root/docker/project-01-anti-fakenews-cn-unique/frontend/docker-compose.yml up -d
+            docker compose -f /root/docker/project-01-anti-fakenews-cn-unique/frontend/docker-compose.yml up -d
 
             docker ps
