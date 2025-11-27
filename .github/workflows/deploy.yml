@@ -26,10 +26,6 @@ jobs:
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/project-01-anti-fakenews-cn-unique:latest
 
 
-  deploy:
-    needs: build-and-push 
-    runs-on: ubuntu-latest
-    steps:
       - name: copy file via ssh password
         uses: appleboy/scp-action@v0.1.7
         with:
