@@ -2,4 +2,4 @@ services:
   web:
     image: "gsyp10032/project-01-anti-fakenews-cn-unique:latest"
     ports:
-      - "8001:3291"
+      - "3291:3291"
