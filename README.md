@@ -17,6 +17,7 @@
 - **Presentation:** The `template for presentation.pptx` is in the project folder.
 - **Class GitHub Repository:** https://github.com/chartchai-class/project-01-anti-fakenews-cn-unique
 - **Personal GitHub Repository:** https://github.com/wangyuzhe0/vue-final-lab
+- **Live Deployment (Frontend):** http://59.45.10.246:3291
 
 ## Features
 
